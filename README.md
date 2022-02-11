@@ -1,5 +1,8 @@
 # Getting Started with Create React App
 
+An admin app for managing different applications, it can be customized and used to your taste.\
+Built with chakra-Ui library.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
