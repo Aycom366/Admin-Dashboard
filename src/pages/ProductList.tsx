@@ -2,96 +2,54 @@ import DataTable from "../components/shared/DataTable";
 import { Column } from "react-table";
 import { Avatar, HStack, IconButton, Text } from "@chakra-ui/react";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
-import { TableData } from "../models";
+import { ProductTableData, TableData } from "../models";
 import { useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
 
-const User = () => {
+const ProductList = () => {
   const navigate = useNavigate();
-  const [data, setData] = useState<TableData[]>([
+  const [data, setData] = useState<ProductTableData[]>([
     {
       id: "1",
       name: "Ayomide",
-      age: "33",
-      status: "Active",
-      email: "bamigboye",
-      transaction: 2250,
+      stock: 33,
       img: "https://avatars.githubusercontent.com/u/42998943?v=4",
     },
     {
-      id: "2",
+      id: "1kdkdlkd",
       name: "Ayomide",
-      age: "33",
-      status: "Active",
-      email: "bamigboye",
-      transaction: 2250,
+      stock: 33,
       img: "https://avatars.githubusercontent.com/u/42998943?v=4",
     },
     {
-      id: "2",
+      id: "1lklkelkewew",
       name: "Ayomide",
-      age: "33",
-      status: "Active",
-      email: "bamigboye",
-      transaction: 2250,
+      stock: 33,
       img: "https://avatars.githubusercontent.com/u/42998943?v=4",
     },
     {
-      id: "lkdkdslkdslk",
+      id: "lllrerer",
       name: "Ayomide",
-      age: "33",
-      status: "Active",
-      email: "bamigboye",
-      transaction: 2250,
+      stock: 33,
       img: "https://avatars.githubusercontent.com/u/42998943?v=4",
     },
     {
-      id: "kdlkdlkds",
+      id: "dmdmd,mdkjekj",
       name: "Ayomide",
-      age: "33",
-      status: "Active",
-      email: "bamigboye",
-      transaction: 2250,
-      img: "https://avatars.githubusercontent.com/u/42998943?v=4",
-    },
-    {
-      id: "kdlkdleoieiewioewkds",
-      name: "Ayomide",
-      age: "33",
-      status: "Active",
-      email: "bamigboye",
-      transaction: 2250,
-      img: "https://avatars.githubusercontent.com/u/42998943?v=4",
-    },
-    {
-      id: "kdldkdkdkdlkds",
-      name: "Ayomide",
-      age: "33",
-      status: "Active",
-      email: "bamigboye",
-      transaction: 2250,
-      img: "https://avatars.githubusercontent.com/u/42998943?v=4",
-    },
-    {
-      id: "klkklrlkrlkreer",
-      name: "Ayomide",
-      age: "33",
-      status: "Active",
-      email: "bamigboye",
-      transaction: 2250,
+      stock: 33,
       img: "https://avatars.githubusercontent.com/u/42998943?v=4",
     },
   ]);
 
-  const tableData: TableData[] = useMemo(() => data, [data]);
+  const tableData: ProductTableData[] = useMemo(() => data, [data]);
 
-  const columns: Column<TableData>[] = [
+  const columns: Column<ProductTableData>[] = [
     {
       Header: "Id",
       accessor: "id",
     },
     {
-      Header: "Name",
+      Header: "Product Name",
       accessor: "name",
       Cell: ({ row: { original } }) => (
         <HStack spacing={4} w="full">
@@ -101,21 +59,10 @@ const User = () => {
       ),
     },
     {
-      Header: "Age",
-      accessor: "age",
+      Header: "Stock",
+      accessor: "stock",
     },
-    {
-      Header: "Status",
-      accessor: "status",
-    },
-    {
-      Header: "Email",
-      accessor: "email",
-    },
-    {
-      Header: "Transaction",
-      accessor: "transaction",
-    },
+
     {
       Header: "Action",
       Cell: ({ row: { original } }: any) => (
@@ -140,10 +87,10 @@ const User = () => {
   };
 
   const handleEdit = (original: TableData) => {
-    navigate(`/user/${original.id}`);
+    navigate(`/product/${original.id}`);
   };
 
-  return <DataTable title="User Rows" columns={columns} data={tableData} />;
+  return <DataTable title="Product Rows" columns={columns} data={tableData} />;
 };
 
-export default User;
+export default ProductList;

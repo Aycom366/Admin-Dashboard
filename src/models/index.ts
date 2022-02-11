@@ -29,3 +29,18 @@ export interface TableData {
   email: string;
   transaction: number;
 }
+
+export interface ProductModel {
+  productName: string;
+  inStock: string;
+  price?: number;
+  active: string;
+  pic?: File;
+}
+
+export interface ProductTableData {
+  id: string;
+  img: string;
+  name: string;
+  stock: number;
+}

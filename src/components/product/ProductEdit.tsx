@@ -12,38 +12,37 @@ import {
 import React, { useRef, useState } from "react";
 import { FiUpload } from "react-icons/fi";
 import InputField from "../shared/InputField";
+import SelectInputField from "../shared/SelectInputField";
 
 interface Forms {
-  userName: string;
-  fullName: string;
-  email: string;
-  phone: string;
-  address: string;
+  productName: string;
+  inStock: string;
+  isActive: string;
   pic?: File;
 }
 
-const Edit = () => {
+const ProductEdit = () => {
   const [forms, setForms] = useState<Forms>({
-    userName: "aycom366",
-    fullName: "ayomide bamigboye",
-    email: "bamigboyeayomide200@gmail.com",
-    phone: "+234-81-062578884",
-    address: "Ibadan, Nigeria",
+    productName: "aycom366",
+    inStock: "Yes",
+    isActive: "Yes",
     pic: undefined,
   });
 
   const imageRef = useRef<HTMLInputElement>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.type === "file") {
-      const file: File = (e.target.files as FileList)[0];
-      if (file) setForms({ ...forms, pic: file });
-    } else {
-      setForms({
-        ...forms,
-        [e.target.name]: e.target.value,
-      });
-    }
+  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file: File = (e.target.files as FileList)[0];
+    if (file) setForms({ ...forms, pic: file });
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setForms({
+      ...forms,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
@@ -59,33 +58,21 @@ const Edit = () => {
         <VStack h="full" w="full">
           <InputField
             handleChange={handleChange}
-            value={forms.userName}
-            label="Username:"
-            name="userName"
+            value={forms.productName}
+            label="Product Name:"
+            name="productName"
           />
-          <InputField
+          <SelectInputField
+            value={forms.inStock}
             handleChange={handleChange}
-            value={forms.fullName}
-            label="Full Name:"
-            name="fullName"
+            options={["Yes", "No"]}
+            label="In Stock:"
           />
-          <InputField
+          <SelectInputField
+            value={forms.isActive}
             handleChange={handleChange}
-            value={forms.email}
-            label="Email:"
-            name="email"
-          />
-          <InputField
-            handleChange={handleChange}
-            value={forms.phone}
-            label="Phone:"
-            name="phone"
-          />
-          <InputField
-            handleChange={handleChange}
-            value={forms.address}
-            label="Address:"
-            name="address"
+            options={["Yes", "No"]}
+            label="Active:"
           />
         </VStack>
         <Flex
@@ -119,7 +106,7 @@ const Edit = () => {
             <input
               ref={imageRef}
               name="pic"
-              onChange={(e) => handleChange(e)}
+              onChange={(e) => handleImage(e)}
               style={{ display: "none" }}
               type="file"
               multiple={false}
@@ -141,4 +128,4 @@ const Edit = () => {
   );
 };
 
-export default Edit;
+export default ProductEdit;

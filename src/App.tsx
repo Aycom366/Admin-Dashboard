@@ -12,7 +12,10 @@ import Home from "./pages/Home";
 import User from "././pages/User";
 import ScrollToTop from "./ScrollToTop";
 import EditUser from "./pages/EditUser";
-import Create from "./components/shared/Create";
+import CreateUser from "./pages/CreateUser";
+import ProductList from "./pages/ProductList";
+import EditProduct from "./pages/EditProduct";
+import CreateProduct from "./pages/CreateProduct";
 
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -49,7 +52,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/user" element={<User />} />
-          <Route path="/create-user" element={<Create />} />
+          <Route path="/product" element={<ProductList />} />
+          <Route path="/create-product" element={<CreateProduct />} />
+          <Route path="/product/:id" element={<EditProduct />} />
+          <Route path="/create-user" element={<CreateUser />} />
           <Route path="/user/:id" element={<EditUser />} />
         </Routes>
       </Box>

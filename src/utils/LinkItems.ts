@@ -38,7 +38,7 @@ export const LinkItems: Array<GroupLinkItems> = [
     groupName: "Quick Menu",
     child: [
       { name: "Users", icon: FiUsers, url: "/user" },
-      { name: "Products", icon: FiPackage, url: "/" },
+      { name: "Products", icon: FiPackage, url: "/product" },
       { name: "Transactions", icon: FiDollarSign, url: "/" },
       { name: "Reports", icon: FiBarChart2, url: "/" },
     ],

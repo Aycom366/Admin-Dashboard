@@ -16,9 +16,10 @@ interface Props {
   dataKey: string;
   dataKey2?: string;
   grid: boolean;
+  nolegend?: boolean;
 }
 
-const Chart = ({ title, data, dataKey, dataKey2, grid }: Props) => {
+const Chart = ({ title, nolegend, data, dataKey, dataKey2, grid }: Props) => {
   return (
     <VStack
       p={{ base: "2rem 1rem", sm: "2rem" }}
@@ -54,7 +55,7 @@ const Chart = ({ title, data, dataKey, dataKey2, grid }: Props) => {
 
           {/* Tooltop */}
           <Tooltip />
-          <Legend />
+          {!nolegend && <Legend />}
 
           {/* The line chart itself */}
           <Line

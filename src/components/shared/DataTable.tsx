@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Column,
   useTable,
@@ -30,6 +29,7 @@ import {
   Text,
   HStack,
   NumberInputField,
+  Heading,
 } from "@chakra-ui/react";
 
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
@@ -42,11 +42,13 @@ import IndeterminateCheckbox from "./IndeterminateCheckbox";
 export interface DataTableProps<Data extends object> {
   data: Data[];
   columns: Column<Data>[];
+  title?: string;
 }
 
 export function DataTable<Data extends object>({
   data,
   columns,
+  title,
 }: DataTableProps<Data>) {
   const {
     getTableProps,
@@ -59,8 +61,6 @@ export function DataTable<Data extends object>({
     page,
     setPageSize,
     prepareRow,
-    selectedFlatRows,
-    // The rest of these things are super handy, too ;)
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -77,15 +77,11 @@ export function DataTable<Data extends object>({
         //a column for selection
         {
           id: "selection",
-          // The header can use the table's getToggleAllRowsSelectedProps method
-          // to render a checkbox
           Header: ({ getToggleAllPageRowsSelectedProps }) => (
             <div>
               <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
             </div>
           ),
-          // The cell can use the individual row's getToggleRowSelectedProps method
-          // to the render a checkbox
           Cell: ({ row }: any) => (
             <div>
               <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
@@ -104,21 +100,30 @@ export function DataTable<Data extends object>({
     <VStack
       p={4}
       w="full"
-      spacing={4}
+      spacing={8}
       alignItems="flex-start"
       bg={useColorModeValue("white", "gray.900")}
       boxShadow={useColorModeValue("sm", "dark-sm")}
     >
-      <FormControl w="full" maxW={"300px"}>
-        <HStack>
-          <Text>Search:</Text>
-          <Input
-            size={"sm"}
-            value={globalFilter}
-            onChange={(e) => setGlobalFilter(e.target.value)}
-          />
-        </HStack>
-      </FormControl>
+      <Flex w="full" justifyContent="space-between" alignItems="center">
+        {title && (
+          <Heading fontSize={{ base: "1rem", sm: "2rem" }}>{title}</Heading>
+        )}
+        <FormControl w="full" maxW={"300px"}>
+          <HStack>
+            <Text>Search:</Text>
+            <Input
+              size={"sm"}
+              value={globalFilter}
+              border="1.5px solid"
+              borderColor="gray.500"
+              _focus={{ boxShadow: "none" }}
+              onChange={(e) => setGlobalFilter(e.target.value)}
+            />
+          </HStack>
+        </FormControl>
+      </Flex>
+
       <Table size="sm" {...getTableProps()}>
         <Thead>
           {headerGroups.map((headerGroup) => (

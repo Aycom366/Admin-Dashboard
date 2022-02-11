@@ -4,13 +4,11 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
   HStack,
   Avatar,
-  Box,
   Text,
   Center,
 } from "@chakra-ui/react";
